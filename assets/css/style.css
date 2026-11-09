@@ -67,4 +67,38 @@ body {
   line-height: 1.5;
 }
 
+.posts {
+  margin-top: 40px;
+}
+.posts h2 {
+  margin-bottom: 20px;
+}
+
+.post {
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 8px;
+}
+.post img {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+.post h3 {
+  margin-bottom: 10px;
+}
+.post p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.post span {
+  color: #888;
+  font-size: 14px;
+}
+
 /*# sourceMappingURL=style.css.map */

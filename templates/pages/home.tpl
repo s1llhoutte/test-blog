@@ -19,4 +19,24 @@
     </div>
 </section>
 
+<section class="posts">
+    <h2>Последние статьи</h2>
+
+    {if $posts}
+        {foreach $posts as $post}
+            <article class="post">
+                {if $post.image}
+                    <img src="{$post.image|escape}" alt="{$post.name|escape}">
+                {/if}
+
+                <h3>{$post.name|escape}</h3>
+                <p>{$post.description|escape}</p>
+                <span>Просмотров: {$post.views}</span>
+            </article>
+        {/foreach}
+    {else}
+        <p>Статей пока нет.</p>
+    {/if}
+</section>
+
 {include file="layouts/footer.tpl"}
