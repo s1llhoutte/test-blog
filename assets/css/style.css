@@ -46,4 +46,25 @@ body {
   color: #fff;
 }
 
+.categories {
+  margin-top: 30px;
+}
+.categories h2 {
+  margin-bottom: 20px;
+}
+
+.category {
+  padding: 20px;
+  margin-bottom: 15px;
+  background: #fff;
+  border-radius: 8px;
+}
+.category h3 {
+  margin-bottom: 10px;
+}
+.category p {
+  color: #666;
+  line-height: 1.5;
+}
+
 /*# sourceMappingURL=style.css.map */
