@@ -55,4 +55,29 @@
     </div>
 </section>
 
+{if $totalPages > 1}
+    <nav class="pagination">
+        {if $currentPage > 1}
+            <a href="/?page=category&id={$category.id}&sort={$sort}&page_number={$currentPage - 1}">
+                Назад
+            </a>
+        {/if}
+
+        {for $pageNumber = 1 to $totalPages}
+            <a
+                href="/?page=category&id={$category.id}&sort={$sort}&page_number={$pageNumber}"
+                class="{if $pageNumber === $currentPage}active{/if}"
+            >
+                {$pageNumber}
+            </a>
+        {/for}
+
+        {if $currentPage < $totalPages}
+            <a href="/?page=category&id={$category.id}&sort={$sort}&page_number={$currentPage + 1}">
+                Далее
+            </a>
+        {/if}
+    </nav>
+{/if}
+
 {include file="layouts/footer.tpl"}

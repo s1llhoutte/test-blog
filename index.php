@@ -33,9 +33,30 @@ if ($page === 'category') {
         $sort = 'date';
     }
 
+    $perPage = 3;
+    $totalPosts = $categoryModel->getPostsCount($categoryId);
+    $totalPages = (int) ceil($totalPosts / $perPage);
+
+    $currentPage = max(1, (int) ($_GET['page_number'] ?? 1));
+
+    if ($totalPages > 0) {
+        $currentPage = min($currentPage, $totalPages);
+    }
+
+    $offset = ($currentPage - 1) * $perPage;
+
+    $posts = $categoryModel->getPostsPaginated(
+        $categoryId,
+        $sort,
+        $perPage,
+        $offset
+    );
+
     $smarty->assign('category', $category);
-    $smarty->assign('posts', $categoryModel->getPosts($categoryId, $sort));
+    $smarty->assign('posts', $posts);
     $smarty->assign('sort', $sort);
+    $smarty->assign('currentPage', $currentPage);
+    $smarty->assign('totalPages', $totalPages);
 
     $smarty->display('pages/category.tpl');
     exit;

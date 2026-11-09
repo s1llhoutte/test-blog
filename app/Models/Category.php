@@ -48,4 +48,46 @@ class Category
 
         return $stmt->fetchAll();
     }
+
+    public function getPostsCount(int $categoryId): int
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT COUNT(*)
+            FROM post_category
+            WHERE category_id = :category_id'
+        );
+
+        $stmt->execute(['category_id' => $categoryId]);
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    public function getPostsPaginated(
+        int $categoryId,
+        string $sort,
+        int $limit,
+        int $offset
+    ): array {
+        $orderBy = match ($sort) {
+            'views' => 'posts.views DESC',
+            default => 'posts.created_at DESC',
+        };
+
+        $stmt = $this->pdo->prepare(
+            "SELECT posts.*
+            FROM posts
+            INNER JOIN post_category ON posts.id = post_category.post_id
+            WHERE post_category.category_id = :category_id
+            ORDER BY {$orderBy}
+            LIMIT :limit OFFSET :offset"
+        );
+
+        $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }
