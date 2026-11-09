@@ -31,12 +31,12 @@
             {foreach $posts as $post}
                 <article class="post">
                     {if $post.image}
-                        <div class="post__image">
+                        <a href="/?page=post&id={$post.id}" class="post__image">
                             <img
                                 src="{$post.image|escape}"
                                 alt="{$post.name|escape}"
                             >
-                        </div>
+                        </a>
                     {/if}
 
                     <div class="post__content">
