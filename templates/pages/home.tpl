@@ -1,42 +1,76 @@
 {include file="layouts/header.tpl"}
 
 <section class="home">
-    <h1>Добро пожаловать в {$site_name}!</h1>
+    <div class="home__hero">
+        <span class="home__label">Добро пожаловать</span>
+        <h1>Место для интересных идей и полезных знаний</h1>
+        <p>
+            Читайте статьи о программировании, веб-разработке,
+            базах данных и инструментах для разработчиков.
+        </p>
+    </div>
 
-    <div class="categories">
-        <h2>Категории</h2>
+    <section class="categories">
+        <div class="section-heading">
+            <div>
+                <span class="section-heading__label">Навигация</span>
+                <h2>Категории</h2>
+            </div>
+        </div>
 
         {if $categories}
-            {foreach $categories as $category}
-                <article class="category">
-                    <h3>{$category.name|escape}</h3>
-                    <p>{$category.description|escape}</p>
-                </article>
-            {/foreach}
+            <div class="categories__grid">
+                {foreach $categories as $category}
+                    <article class="category">
+                        <h3>{$category.name|escape}</h3>
+                        <p>{$category.description|escape}</p>
+                    </article>
+                {/foreach}
+            </div>
         {else}
             <p>Категории пока не добавлены.</p>
         {/if}
-    </div>
-</section>
+    </section>
 
-<section class="posts">
-    <h2>Последние статьи</h2>
+    <section class="posts">
+        <div class="section-heading">
+            <div>
+                <span class="section-heading__label">Блог</span>
+                <h2>Последние статьи</h2>
+            </div>
+        </div>
 
-    {if $posts}
-        {foreach $posts as $post}
-            <article class="post">
-                {if $post.image}
-                    <img src="{$post.image|escape}" alt="{$post.name|escape}">
-                {/if}
+        {if $posts}
+            <div class="posts__grid">
+                {foreach $posts as $post}
+                    <article class="post">
+                        {if $post.image}
+                            <div class="post__image">
+                                <img
+                                    src="{$post.image|escape}"
+                                    alt="{$post.name|escape}"
+                                >
+                            </div>
+                        {/if}
 
-                <h3>{$post.name|escape}</h3>
-                <p>{$post.description|escape}</p>
-                <span>Просмотров: {$post.views}</span>
-            </article>
-        {/foreach}
-    {else}
-        <p>Статей пока нет.</p>
-    {/if}
+                        <div class="post__content">
+                            <h3>{$post.name|escape}</h3>
+                            <p>{$post.description|escape}</p>
+
+                            <div class="post__meta">
+                                <span>
+                                    <span class="post__meta-icon">◉</span>
+                                    {$post.views} просмотров
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                {/foreach}
+            </div>
+        {else}
+            <p>Статей пока нет.</p>
+        {/if}
+    </section>
 </section>
 
 {include file="layouts/footer.tpl"}
