@@ -90,4 +90,23 @@ class Category
 
         return $stmt->fetchAll();
     }
+
+    public function getLatestPosts(int $categoryId, int $limit = 3): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT posts.*
+            FROM posts
+            INNER JOIN post_category ON posts.id = post_category.post_id
+            WHERE post_category.category_id = :category_id
+            ORDER BY posts.created_at DESC
+            LIMIT :limit'
+        );
+
+        $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

@@ -84,7 +84,21 @@ if ($page === 'category') {
     exit;
 }
 
-$smarty->assign('categories', $categoryModel->getAll());
-$smarty->assign('posts', $postModel->getAll());
+$categories = $categoryModel->getAll();
+
+$categoriesWithPosts = [];
+
+foreach ($categories as $category) {
+    $posts = $categoryModel->getLatestPosts($category['id']);
+
+    if (!$posts) {
+        continue;
+    }
+
+    $category['posts'] = $posts;
+    $categoriesWithPosts[] = $category;
+}
+
+$smarty->assign('categories', $categoriesWithPosts);
 
 $smarty->display('pages/home.tpl');
