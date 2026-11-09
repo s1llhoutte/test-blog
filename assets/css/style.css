@@ -162,4 +162,41 @@ body {
   color: #fff;
 }
 
+.category h3 a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.category h3 a:hover {
+  color: #777;
+}
+
+.category-page {
+  padding: 35px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+}
+.category-page > h1 {
+  margin-bottom: 15px;
+  font-size: 32px;
+}
+.category-page > p {
+  max-width: 800px;
+  margin-bottom: 40px;
+  color: #777;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.category-page .posts {
+  margin-top: 0;
+}
+.category-page .posts h2 {
+  margin-bottom: 25px;
+  font-size: 25px;
+}
+.category-page .posts .post {
+  margin-bottom: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */

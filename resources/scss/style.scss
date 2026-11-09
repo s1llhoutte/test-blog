@@ -184,3 +184,51 @@ body {
     background: #222;
     color: #fff;
 }
+
+
+.category {
+    h3 {
+        a {
+            color: #222;
+            text-decoration: none;
+            transition: color 0.2s;
+
+            &:hover {
+                color: #777;
+            }
+        }
+    }
+}
+
+.category-page {
+    padding: 35px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+
+    > h1 {
+        margin-bottom: 15px;
+        font-size: 32px;
+    }
+
+    > p {
+        max-width: 800px;
+        margin-bottom: 40px;
+        color: #777;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .posts {
+        margin-top: 0;
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 25px;
+        }
+
+        .post {
+            margin-bottom: 20px;
+        }
+    }
+}

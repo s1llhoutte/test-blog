@@ -22,7 +22,11 @@
             <div class="categories__grid">
                 {foreach $categories as $category}
                     <article class="category">
-                        <h3>{$category.name|escape}</h3>
+                        <h3>
+                            <a href="/?page=category&id={$category.id}">
+                                {$category.name|escape}
+                            </a>
+                        </h3>
                         <p>{$category.description|escape}</p>
                     </article>
                 {/foreach}

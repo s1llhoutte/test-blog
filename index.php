@@ -15,6 +15,26 @@ $categoryModel = new Category($pdo);
 $postModel = new Post($pdo);
 
 $smarty->assign('site_name', 'Test Blog');
+
+$page = $_GET['page'] ?? 'home';
+
+if ($page === 'category') {
+    $categoryId = (int) ($_GET['id'] ?? 0);
+
+    $category = $categoryModel->getById($categoryId);
+
+    if (!$category) {
+        http_response_code(404);
+        exit('Категория не найдена');
+    }
+
+    $smarty->assign('category', $category);
+    $smarty->assign('posts', $categoryModel->getPosts($categoryId));
+
+    $smarty->display('pages/category.tpl');
+    exit;
+}
+
 $smarty->assign('categories', $categoryModel->getAll());
 $smarty->assign('posts', $postModel->getAll());
 
