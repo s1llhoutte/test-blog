@@ -6,7 +6,26 @@
     <p>{$category.description|escape}</p>
 
     <div class="posts">
-        <h2>Статьи категории</h2>
+        <div class="category-page__heading">
+            <h2>Статьи категории</h2>
+
+            <div class="category-page__sorting">
+                <span>Сортировка:</span>
+                <a
+                    href="/?page=category&id={$category.id}&sort=date"
+                    class="{if $sort === 'date'}active{/if}"
+                >
+                    По дате
+                </a>
+
+                <a
+                    href="/?page=category&id={$category.id}&sort=views"
+                    class="{if $sort === 'views'}active{/if}"
+                >
+                    По просмотрам
+                </a>
+            </div>
+        </div>
 
         {if $posts}
             {foreach $posts as $post}

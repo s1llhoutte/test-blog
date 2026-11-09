@@ -29,14 +29,19 @@ class Category
         return $category ?: null;
     }
 
-    public function getPosts(int $categoryId): array
+    public function getPosts(int $categoryId, string $sort = 'date'): array
     {
+        $orderBy = match ($sort) {
+            'views' => 'posts.views DESC',
+            default => 'posts.created_at DESC',
+        };
+
         $stmt = $this->pdo->prepare(
-            'SELECT posts.*
+            "SELECT posts.*
             FROM posts
             INNER JOIN post_category ON posts.id = post_category.post_id
             WHERE post_category.category_id = :category_id
-            ORDER BY posts.created_at DESC'
+            ORDER BY {$orderBy}"
         );
 
         $stmt->execute(['category_id' => $categoryId]);

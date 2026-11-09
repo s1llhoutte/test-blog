@@ -28,8 +28,14 @@ if ($page === 'category') {
         exit('Категория не найдена');
     }
 
+    $sort = $_GET['sort'] ?? 'date';
+    if (!in_array($sort, ['date', 'views'], true)) {
+        $sort = 'date';
+    }
+
     $smarty->assign('category', $category);
-    $smarty->assign('posts', $categoryModel->getPosts($categoryId));
+    $smarty->assign('posts', $categoryModel->getPosts($categoryId, $sort));
+    $smarty->assign('sort', $sort);
 
     $smarty->display('pages/category.tpl');
     exit;
