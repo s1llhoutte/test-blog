@@ -37,4 +37,29 @@ class Post
 
         $stmt->execute(['id' => $id]);
     }
+
+    public function getSimilar(int $postId, int $limit = 3): array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT posts.*, COUNT(*) AS shared_categories
+            FROM post_category AS current_category
+            INNER JOIN post_category AS similar_category
+                ON similar_category.category_id = current_category.category_id
+            INNER JOIN posts
+                ON posts.id = similar_category.post_id
+            WHERE current_category.post_id = :current_post_id
+                AND similar_category.post_id != :excluded_post_id
+            GROUP BY posts.id
+            ORDER BY shared_categories DESC, posts.created_at DESC
+            LIMIT :limit'
+        );
+
+        $stmt->bindValue(':current_post_id', $postId, PDO::PARAM_INT);
+        $stmt->bindValue(':excluded_post_id', $postId, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

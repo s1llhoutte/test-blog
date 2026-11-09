@@ -31,7 +31,10 @@ if ($page === 'post') {
     $postModel->incrementViews($postId);
     $post['views']++;
 
+    $similarPosts = $postModel->getSimilar($postId, 3);
+
     $smarty->assign('post', $post);
+    $smarty->assign('similarPosts', $similarPosts);
 
     $smarty->display('pages/post.tpl');
     exit;
