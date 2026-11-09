@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #222;
+  background: #f5f5f5;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  padding: 20px 0;
+  background: #222;
+}
+.header__logo {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.main {
+  min-height: 70vh;
+  padding: 40px 0;
+}
+
+.home h1 {
+  margin-bottom: 15px;
+}
+.home p {
+  color: #666;
+}
+
+.footer {
+  padding: 25px 0;
+  background: #222;
+  color: #fff;
+}
+
+/*# sourceMappingURL=style.css.map */

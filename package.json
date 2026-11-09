@@ -1,0 +1,25 @@
+{
+  "name": "test-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "scss": "sass resources/scss/style.scss assets/css/style.css",
+    "scss:watch": "sass --watch resources/scss/style.scss:assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1llhoutte/test-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/s1llhoutte/test-blog/issues"
+  },
+  "homepage": "https://github.com/s1llhoutte/test-blog#readme",
+  "devDependencies": {
+    "sass": "^1.108.1"
+  }
+}

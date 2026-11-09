@@ -7,7 +7,6 @@ $smarty = new Smarty\Smarty();
 $smarty->setTemplateDir(__DIR__ . '/templates');
 $smarty->setCompileDir(__DIR__ . '/storage/smarty/compiled');
 
-$smarty->assign('title', 'Test Blog');
-$smarty->assign('description', 'Smarty is working correctly!');
+$smarty->assign('site_name', 'Test Blog');
 
-$smarty->display('test.tpl');
+$smarty->display('pages/home.tpl');
