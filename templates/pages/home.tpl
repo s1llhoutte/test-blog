@@ -58,7 +58,11 @@
                         {/if}
 
                         <div class="post__content">
-                            <h3>{$post.name|escape}</h3>
+                            <h3>
+                                <a href="/?page=post&id={$post.id}">
+                                    {$post.name|escape}
+                                </a>
+                            </h3>
                             <p>{$post.description|escape}</p>
 
                             <div class="post__meta">

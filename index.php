@@ -18,6 +18,25 @@ $smarty->assign('site_name', 'Test Blog');
 
 $page = $_GET['page'] ?? 'home';
 
+if ($page === 'post') {
+    $postId = (int) ($_GET['id'] ?? 0);
+
+    $post = $postModel->getById($postId);
+
+    if (!$post) {
+        http_response_code(404);
+        exit('Статья не найдена');
+    }
+
+    $postModel->incrementViews($postId);
+    $post['views']++;
+
+    $smarty->assign('post', $post);
+
+    $smarty->display('pages/post.tpl');
+    exit;
+}
+
 if ($page === 'category') {
     $categoryId = (int) ($_GET['id'] ?? 0);
 
